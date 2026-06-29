@@ -1,0 +1,7 @@
+/*
+# track only these
+!/.gitignore
+!/init.el
+!/templates/
+!/research-workflow.el
+!/themes/
