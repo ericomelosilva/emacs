@@ -341,7 +341,7 @@
      (python . t)
      (haskell . t)
      (rust . t)
-     (shell . t)))    ;; Handy for shell commands
+     (shell . t)))    
 
   ;; 1. No "Are you sure?" prompt for every execution
   (setq org-confirm-babel-evaluate nil)
@@ -394,13 +394,9 @@
 (global-set-key (kbd "C-c i") #'my-open-inbox)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(agda-editor-tactics agda-lib-mode auctex biblio citar-org-roam
-                         consult corfu djvu evil-surround
+                         consult corfu djvu eat evil-surround
                          exec-path-from-shell fsrs gruvbox-theme
                          haskell-mode lean4-mode magit marginalia nov
                          ob-rust orderless org-appear org-fragtog
@@ -411,10 +407,6 @@
  '(package-vc-selected-packages
    '((org :url "https://git.tecosaur.net/tec/org-mode" :branch "dev"))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(org-block ((t (:inherit fixed-pitch))))
  '(org-checkbox ((t (:inherit fixed-pitch))))
  '(org-code ((t (:inherit fixed-pitch))))

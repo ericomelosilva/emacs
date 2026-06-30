@@ -18,14 +18,15 @@
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "KILL(k@)")
-        (sequence "SORRY(s)" "|" "PROVEN(P!)")))   
+        (sequence "SORRY(s)" "|" "PROVEN(P!)" "|" "QUESTION(q!)")))   
 
 (setq org-todo-keyword-faces
       '(("NEXT"   . "#fabd2f")
         ("WAIT"   . "#928374")
         ("KILL"   . "#928374")
         ("SORRY"  . "#fe8019")
-        ("PROVEN" . "#b8bb26")))
+        ("PROVEN" . "#b8bb26")
+        ("QUESTION" . "#83a598")))
 
 (setq org-log-into-drawer t)
 
@@ -303,17 +304,5 @@
 (global-set-key (kbd "C-c r b") #'citar-open)     
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c [") #'org-cite-insert))
-
-;; ---------------------------------------------------------------------------
-;; REMOVE FROM init.el (superseded here):
-;;   - (setq org-agenda-files '(...))
-;;   - the (setq org-capture-templates ...) block in section 12
-;;   - the org-capture-templates entry inside custom-set-variables
-;;   - my-jump-to-today / -yesterday / my-daily-timestamped-note /
-;;     my-insert-daily-template / my-insert-project-template / my-open-project
-;;     and their C-c j/y/l/t/P/p bindings
-;;   - the org-roam-capture-templates / my-paper-template block in section 14
-;; Keep: inbox.org, roam/, org-roam-db-autosync-mode, pdf+noter setup.
-;; ---------------------------------------------------------------------------
 
 (provide 'research-workflow)
