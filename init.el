@@ -76,7 +76,7 @@
              org-roam-ui eglot rust-mode haskell-mode lsp-mode
              gruvbox-theme exec-path-from-shell
              visual-fill-column ob-rust djvu magit
-             typst-ts-mode))
+             typst-ts-mode polymode auctex))
   (my/ensure p))
 
 (unless (package-installed-p 'lean4-mode)
@@ -301,6 +301,32 @@
 (add-hook 'latex-mode-hook #'my/latex-surround-setup)
 (add-hook 'LaTeX-mode-hook #'my/latex-surround-setup)
 
+;; -------------------------
+;; LaTeX Literate Haskell
+;; -------------------------
+
+(when (and (package-installed-p 'polymode)
+           (package-installed-p 'auctex)
+           (package-installed-p 'haskell-mode))
+  (require 'polymode)
+  (require 'tex) 
+
+  (define-hostmode my-poly-latex-haskell-hostmode
+    :mode 'LaTeX-mode)
+
+  (define-innermode my-poly-latex-haskell-code-innermode
+    :mode 'haskell-mode
+    :head-matcher "^[ \t]*\\\\begin{code}[ \t]*$"
+    :tail-matcher "^[ \t]*\\\\end{code}[ \t]*$"
+    :head-mode 'host
+    :tail-mode 'host)
+
+  (define-polymode my-poly-latex-haskell-mode
+    :hostmode 'my-poly-latex-haskell-hostmode
+    :innermodes '(my-poly-latex-haskell-code-innermode))
+
+  (add-to-list 'auto-mode-alist
+               '("\\.lhs\\'" . my-poly-latex-haskell-mode)))
 
 (when (package-installed-p 'org-roam-ui)
   (require 'org-roam-ui)
@@ -394,6 +420,10 @@
 (global-set-key (kbd "C-c i") #'my-open-inbox)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(agda-editor-tactics agda-lib-mode auctex biblio citar-org-roam
                          consult corfu djvu eat evil-surround
@@ -401,12 +431,16 @@
                          haskell-mode lean4-mode magit marginalia nov
                          ob-rust orderless org-appear org-fragtog
                          org-modern org-noter org-roam-ui pdf-tools
-                         reddigg rust-mode tree-sitter-langs
+                         polymode reddigg rust-mode tree-sitter-langs
                          typst-ts-mode vertico visual-fill-column
                          vulpea xkcd))
  '(package-vc-selected-packages
    '((org :url "https://git.tecosaur.net/tec/org-mode" :branch "dev"))))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(org-block ((t (:inherit fixed-pitch))))
  '(org-checkbox ((t (:inherit fixed-pitch))))
  '(org-code ((t (:inherit fixed-pitch))))
